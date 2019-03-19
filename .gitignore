@@ -1,0 +1,5 @@
+/results_*
+/*.src.rpm
+
+/tomlrb-1.2.8.gem
+/tomlrb-1.2.8-test.tar.gz
