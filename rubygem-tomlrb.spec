@@ -2,7 +2,7 @@
 
 Name:           rubygem-%{gem_name}
 Version:        1.2.8
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        TOML parser based on racc
 License:        MIT
 
@@ -86,6 +86,9 @@ ruby -I"lib:test" -e 'Dir.glob "./test/test*.rb", &method(:require)'
 
 
 %changelog
+* Fri Jul 26 2019 Fedora Release Engineering <releng@fedoraproject.org> - 1.2.8-4
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_31_Mass_Rebuild
+
 * Tue Mar 19 2019 Fabio Valentini <decathorpe@gmail.com> - 1.2.8-3
 - Clean up prep and build sections.
 
