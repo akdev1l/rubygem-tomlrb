@@ -2,31 +2,23 @@
 
 Name:           rubygem-%{gem_name}
 Version:        1.2.8
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        TOML parser based on racc
 License:        MIT
 
 URL:            https://github.com/fbernier/tomlrb
 Source0:        https://rubygems.org/gems/%{gem_name}-%{version}.gem
+Source1:        %{url}/archive/v%{version}/%{gem_name}-%{version}.tar.gz
 
-# Generated tarball of tests (not present in the gem file)
-# git clone https://github.com/fbernier/tomlrb tomlrb-repo && pushd tomlrb-repo
-# git checkout v1.2.8
-# git archive -o ../tomlrb-1.2.8-test.tar.gz v1.2.8 test
-# popd
-# rm -rf tomlrb-repo
-Source1:        %{gem_name}-%{version}-test.tar.gz
+# disable usage of special minitest reporters
+Patch0:         00-disable-minitest-reporters.patch
 
 BuildRequires:  ruby(release)
 BuildRequires:  rubygems-devel
 BuildRequires:  ruby >= 2.0
 
-# dependency for generation of parser from grammar
-BuildRequires:  rubygem(racc)
-
-# dependencies for test suits
 BuildRequires:  rubygem(minitest)
-BuildRequires:  rubygem(minitest-reporters)
+BuildRequires:  rubygem(racc)
 
 BuildArch:      noarch
 
@@ -44,7 +36,15 @@ Documentation for %{name}.
 
 
 %prep
-%setup -q -n %{gem_name}-%{version} -a1
+%setup -q -n %{gem_name}-%{version}
+
+# extract test files not shipped with the gem
+mkdir upstream && pushd upstream
+tar -xzvf %{SOURCE1}
+mv %{gem_name}-%{version}/test ../test
+popd && rm -r upstream
+
+%patch0 -p1
 
 
 %build
@@ -86,6 +86,9 @@ ruby -I"lib:test" -e 'Dir.glob "./test/test*.rb", &method(:require)'
 
 
 %changelog
+* Thu Oct 31 2019 Fabio Valentini <decathorpe@gmail.com> - 1.2.8-5
+- Simplify packaging and remove minitest-reporters dependency.
+
 * Fri Jul 26 2019 Fedora Release Engineering <releng@fedoraproject.org> - 1.2.8-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_31_Mass_Rebuild
 
