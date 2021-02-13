@@ -1,8 +1,8 @@
 %global gem_name tomlrb
 
 Name:           rubygem-%{gem_name}
-Version:        1.2.8
-Release:        8%{?dist}
+Version:        2.0.1
+Release:        1%{?dist}
 Summary:        TOML parser based on racc
 License:        MIT
 
@@ -86,6 +86,9 @@ ruby -I"lib:test" -e 'Dir.glob "./test/test*.rb", &method(:require)'
 
 
 %changelog
+* Thu Jan 28 2021 Fabio Valentini <decathorpe@gmail.com> - 2.0.1-1
+- Update to version 2.0.1.
+
 * Wed Jan 27 2021 Fedora Release Engineering <releng@fedoraproject.org> - 1.2.8-8
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild
 
