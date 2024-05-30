@@ -44,7 +44,7 @@ tar -xzvf %{SOURCE1}
 mv %{gem_name}-%{version}/test ../test
 popd && rm -r upstream
 
-%patch0 -p1
+%patch -P0 -p1
 
 
 %build
