@@ -1,8 +1,4 @@
 /results_*
 /*.src.rpm
-
-/tomlrb-1.2.8.gem
-/tomlrb-1.2.8-test.tar.gz
-/tomlrb-1.2.8.tar.gz
-/tomlrb-2.0.1.gem
-/tomlrb-2.0.1.tar.gz
+/noarch
+/.build*
